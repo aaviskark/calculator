@@ -48,7 +48,7 @@ def division():
     first_number = float(first_number)
     box.delete(0, END)
 
-#special functions that act differently
+#special functions for the calculator that act differently
 def special_function(func):
     if func == "sqrt":
         sq_number = box.get()
@@ -108,7 +108,7 @@ Button(root, text = "9", width = 10, command = lambda: action(9)).grid(row = 1, 
 
 Button(root, text = "0", width = 10, command = lambda: action(0)).grid(row = 4, column = 0)
 
-#other buttons 
+#other buttons that perform something 
 Button(root, text = "=", width = 10, command = answer).grid(row= 4, column = 1)
 Button(root, text = "AC", width = 10, command = clearall).grid(row = 4, column = 2)
 
