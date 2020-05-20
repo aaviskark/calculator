@@ -6,7 +6,7 @@ root = Tk()
 
 
 #setting up the window
-root.wm_geometry("432x225")
+root.wm_geometry("399x220")
 root.title("Calculator")
 root.resizable(0,0)
 
@@ -21,7 +21,7 @@ def addition():
     global function
     first_number = box.get()
     function = "addition"
-    first_number = int(first_number)
+    first_number = float(first_number)
     box.delete(0, END)
 
 def subtraction():
@@ -29,7 +29,7 @@ def subtraction():
     global function
     first_number = box.get()
     function = "subtraction"
-    first_number = int(first_number)
+    first_number = float(first_number)
     box.delete(0, END)
 
 def multiplication():
@@ -37,7 +37,7 @@ def multiplication():
     global function
     first_number = box.get()
     function = "multiplication"
-    first_number = int(first_number)
+    first_number = float(first_number)
     box.delete(0, END)
 
 def division():
@@ -45,7 +45,7 @@ def division():
     global function
     first_number = box.get()
     function = "division"
-    first_number = int(first_number)
+    first_number = float(first_number)
     box.delete(0, END)
 
 #special functions that act differently
@@ -60,6 +60,16 @@ def special_function(func):
         f_num = math.factorial(float(fac_number))
         box.delete(0, END)
         box.insert(0, f_num)
+    elif func == "exponent":
+        exp_number = box.get()
+        exp_num = math.pow(float(exp_number), 2)
+        box.delete(0, END)
+        box.insert(0, exp_num)
+    elif func == "negative":
+        exp_number = box.get()
+        exp_num = math.pow(float(exp_number), -1)
+        box.delete(0, END)
+        box.insert(0, exp_num) 
     
 
 # functions for the text box         
@@ -99,16 +109,17 @@ Button(root, text = "9", width = 10, command = lambda: action(9)).grid(row = 1, 
 Button(root, text = "0", width = 10, command = lambda: action(0)).grid(row = 4, column = 0)
 
 #other buttons 
-Button(root, text = "=", width = 15, command = answer).grid(row= 2, column = 5)
-Button(root, text = "AC", width = 15, command = clearall).grid(row = 1, column = 5)
+Button(root, text = "=", width = 10, command = answer).grid(row= 4, column = 1)
+Button(root, text = "AC", width = 10, command = clearall).grid(row = 4, column = 2)
 
 Button(root, text = "+", width = 10, command = addition).grid(row = 1, column = 4)
 Button(root, text = "-", width = 10, command = subtraction).grid(row = 2, column = 4)
 Button(root, text = "x", width = 10, command = multiplication).grid(row = 3, column = 4)
 Button(root, text = "/", width = 10, command = division).grid(row = 4, column = 4)
 
-Button(root, text = "!", width = 10, command = lambda: special_function("factorial")).grid(row= 4, column = 1)
-Button(root, text = "√", width = 10, command = lambda: special_function("sqrt")).grid(row = 4, column = 2)
-
+Button(root, text = "!", width = 10, command = lambda: special_function("factorial")).grid(row= 1, column = 5)
+Button(root, text = "√", width = 10, command = lambda: special_function("sqrt")).grid(row = 2, column = 5)
+Button(root, text = "x²", width = 10, command = lambda: special_function("exponent")).grid(row = 3, column = 5)
+Button(root, text = "x⁻¹", width = 10, command = lambda: special_function("negative")).grid(row = 4, column = 5)
 
 root.mainloop()
